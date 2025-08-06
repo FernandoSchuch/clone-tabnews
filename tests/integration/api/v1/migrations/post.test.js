@@ -1,4 +1,5 @@
 import database from "infra/database.js";
+import orchestrator from "tests/orchestrator.js";
 
 async function clearDatabase() {
   await database.query({
@@ -7,6 +8,7 @@ async function clearDatabase() {
 }
 
 beforeAll(async () => {
+  await orchestrator.waitForAllServices();
   await clearDatabase();
 });
 
